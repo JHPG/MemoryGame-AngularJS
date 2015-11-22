@@ -1,23 +1,23 @@
 <!DOCTYPE HTML>
 <html ng-app="MemoryGame">
 <head>
+	<title>MemoryGame - AngularJS</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script src="app.js"></script>
 </head>
 <body>
 	
-	<div ng-controller="CardsController as cards" style="">
+	<div ng-controller="CardsController as cards" style="font-family: Verdana">
 		
 		<center>
-			<h2 style="font-family: Verdana">MemoryGame - AngularJS</h2>
+			<h2>MemoryGame - AngularJS</h2>
 			<form ng-submit="cards.genAgain(qtd)">
 				<p>(precisa passar imagens para canvas para mais que 12)</p>
 
 				Quantidade de cartas: <input type="number" ng-model="qtd" max="12"></input>
 				<button type="submit" style="width:100px;height:30px"> Gerar </button>
+				<h3>Score: {{cards.score}} points</h3>
 			</form>
-
-			<br/><br/>
 
 			<div ng-repeat="card in cards.randomCards" style="max-width:800px">
 				<img style="float:left; margin:10px" ng-src="{{card.imgToShow}}" ng-click="cards.faceUpCard(card)" />
