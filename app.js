@@ -2,8 +2,7 @@
 	var app = angular.module('MemoryGame', []);
 
 	app.controller('CardsController', function() {	// Class
-		
-		this.someFacedUp = true;
+		this.score = 0;
 		this.randomCards = genCards(8);	// Usar numero par
 
 		this.genAgain = function(qtd) {
@@ -52,8 +51,7 @@
 							c.imgToShow = "img/faceDown.jpg";
 						}
 					}
-					turnedCard.faceUp = false;
-					turnedCard.imgToShow = "img/faceDown.jpg";
+					this.score -= 5;
 				}
 			} else {
 				card.faceUp = true;
@@ -64,10 +62,12 @@
 					if (par != card && par.id == card.id && par.faceUp == true) {	//For the pair of this card
 						card.complete = true;
 						par.complete = true;
+						this.score += 20;
 					}
 				}
 				if (this.isComplete() == true) {
 					alert("You Win!");
+					this.score += 50;
 				}
 			}
 		}
